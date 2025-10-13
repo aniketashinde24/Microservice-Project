@@ -22,4 +22,7 @@ public interface UserService {
 	//update user 
 	User updateUser(User user,String userId);
 	
+	//get single user
+	User getSingleUser(String userId);
+	
 }

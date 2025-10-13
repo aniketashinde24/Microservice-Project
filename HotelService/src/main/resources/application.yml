@@ -1,9 +1,9 @@
 server:
-  port: 8082
+  port: 8084
 
 spring:
   datasource:
-    url: jdbc:h2:file:./data/microservicesdb    # store DB on disk instead of in-memory
+    url: jdbc:h2:file:./data/hoteldb   # store DB on disk instead of in-memory
     driver-class-name: org.h2.Driver
     username: sa
     password:                                  # keep it blank

@@ -24,7 +24,6 @@ public class UserServiceImpl implements UserService {
 		user.setUserid(randomUserId);
 		System.out.println("User data: " + user.getName() + " | " + user.getEmail() + " | " + user.getAbout());
 
-
 		return userRepository.save(user);
 	}
 
@@ -38,13 +37,13 @@ public class UserServiceImpl implements UserService {
 	public User getUser(String userId) {
 
 		return userRepository.findById(userId)
-				.orElseThrow(() -> new ResourceNotFoundException("User with given Id is not found : "+userId));
+				.orElseThrow(() -> new ResourceNotFoundException("User with given Id is not found : " + userId));
 	}
 
 	@Override
 	public void deleteUser(String userId) {
 		User user = userRepository.findById(userId)
-				.orElseThrow(() -> new ResourceNotFoundException("User with given Id is not found : "+userId));
+				.orElseThrow(() -> new ResourceNotFoundException("User with given Id is not found : " + userId));
 		userRepository.delete(user);
 
 	}
@@ -52,7 +51,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User updateUser(User user, String userId) {
 		User oldUser = userRepository.findById(userId)
-				.orElseThrow(() -> new ResourceNotFoundException("User with given Id is not found : "+userId));
+				.orElseThrow(() -> new ResourceNotFoundException("User with given Id is not found : " + userId));
 
 		oldUser.setName(user.getName());
 		oldUser.setEmail(user.getEmail());
@@ -61,6 +60,13 @@ public class UserServiceImpl implements UserService {
 		User save = userRepository.save(oldUser);
 
 		return save;
+	}
+
+	@Override
+	public User getSingleUser(String userId) {
+		User user = userRepository.findById(userId)
+				.orElseThrow(() -> new ResourceNotFoundException("User with given id is not found : " + userId));
+		return user;
 	}
 
 }

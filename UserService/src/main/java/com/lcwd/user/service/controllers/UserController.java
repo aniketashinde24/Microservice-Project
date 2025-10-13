@@ -27,7 +27,6 @@ public class UserController {
 	@PostMapping("/")
 	public ResponseEntity<User> createUser(@RequestBody User user) {
 		User saveUser = userService.saveUser(user);
-
 		return new ResponseEntity<User>(saveUser, HttpStatus.CREATED);
 	}
 
@@ -41,7 +40,6 @@ public class UserController {
 	// delete
 	@DeleteMapping("/{id}")
 	public String deleteUser(@PathVariable String id) {
-
 		userService.deleteUser(id);
 		return "User Deleted with User id  " + id;
 	}
@@ -50,7 +48,13 @@ public class UserController {
 	@PostMapping("/{id}")
 	public ResponseEntity<User> updateUser(@RequestBody User user, @PathVariable String id) {
 		User updateUser = userService.updateUser(user, id);
-
 		return new ResponseEntity<User>(updateUser, HttpStatus.CREATED);
+	}
+
+	// get single user
+	@GetMapping("/{id}")
+	public ResponseEntity<User> getSingleUser(@PathVariable String id) {
+		User user = userService.getSingleUser(id);
+		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 }
